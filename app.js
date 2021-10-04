@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('request');
 const https = require("https")
+require('dotenv').config()
 
 const app = express();
 
@@ -35,11 +36,11 @@ app.post("/",function(req,res){
     
     const jsonData = JSON.stringify(data);
 
-    const url = "https://us5.api.mailchimp.com/3.0/lists/62d6def57b";
+    const url = process.env.API_KEY;
 
     const options = {
         method: "POST",
-        auth: "shekhars028:ef85ebb84a2f822dcbb12c362dd8dcd6-us5"
+        auth: process.env.AUTH_ID
     }
 
     const request = https.request(url, options, function(response){
@@ -70,9 +71,3 @@ app.listen(process.env.PORT || 3000,function(){
 })
 
 
-//Lit id
-// 62d6def57b
-
-//API Key
-//ef85ebb84a2f822dcbb12c362dd8dcd6-us5
-//   a407b9157225226000f34648442ca614-us5
